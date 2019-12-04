@@ -1,3 +1,10 @@
+mod lexer;
+mod opcodes;
+use opcodes::OpCode;
+
 fn main() {
-    println!("Hello, world!");
+    let tokens: Vec<OpCode> = lexer::lex("++++++   [ > ++++++++++ < - ] > +++++ .");
+    for token in tokens {
+        println!("{:?}", token);
+    }
 }
