@@ -1,0 +1,27 @@
+name: Rust
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build
+      run: cargo build --verbose --release
+    - name: Run tests
+      run: cargo test --verbose
+    - uses: joshuarli/strip-upx-action@master
+      with:
+        infile: 'target/release/rustfuck'
+        strip_args: '-v --strip-all'
+        upx_args: '-9'
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: rustfuck
+        # Directory containing files to upload
+        path: target/release/rustfuck
