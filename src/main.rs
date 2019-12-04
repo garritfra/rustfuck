@@ -3,14 +3,32 @@ mod interpreter;
 mod lexer;
 mod parser;
 
+use std::fs::File;
+use std::io::Read;
+
 fn main() {
+    // Determine which file to execute
+    let args: Vec<String> = std::env::args().collect();
+
+    if args.len() != 2 {
+        println!("usage: rustfuck <file.bf>");
+        std::process::exit(1);
+    }
+    let filename = &args[1];
+
+    // Read file
+    let mut file = File::open(filename).expect("program file not found");
+    let mut source = String::new();
+    file.read_to_string(&mut source)
+        .expect("failed to read program file");
+
     let mut tape: Vec<u8> = vec![0; 1024];
     for _i in 0..1024 {
         tape.push(60);
     }
     let mut ptr = 512;
 
-    interpreter::run(&parser::parse(lexer::lex(",[>+<-]>.")), &mut tape, &mut ptr)
+    interpreter::run(&parser::parse(lexer::lex(&source)), &mut tape, &mut ptr)
 }
 
 #[cfg(test)]
