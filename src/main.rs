@@ -10,12 +10,7 @@ fn main() {
     }
     let mut ptr = 512;
 
-    interpreter::run(
-        &parser::parse(lexer::lex("++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.
-        ")),
-        &mut tape,
-        &mut ptr,
-    )
+    interpreter::run(&parser::parse(lexer::lex(",[>+<-]>.")), &mut tape, &mut ptr)
 }
 
 #[cfg(test)]

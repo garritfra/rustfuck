@@ -19,6 +19,8 @@ pub fn run(instructions: &Vec<Instruction>, tape: &mut Vec<u8>, ptr: &mut usize)
         std::io::stdin()
           .read_exact(&mut input)
           .expect("failed to read stdin");
+
+        tape[*ptr] = input[0];
       }
     }
   }
