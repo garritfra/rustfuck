@@ -1,6 +1,6 @@
+mod instructions;
 mod lexer;
-mod opcodes;
-use opcodes::OpCode;
+use instructions::OpCode;
 
 fn main() {
     let tokens: Vec<OpCode> = lexer::lex("++++++   [ > ++++++++++ < - ] > +++++ .");

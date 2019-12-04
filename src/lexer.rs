@@ -1,4 +1,4 @@
-use crate::opcodes::OpCode;
+use crate::instructions::OpCode;
 
 pub fn lex(input: &str) -> Vec<OpCode> {
   let mut tokens: Vec<OpCode> = Vec::new();
