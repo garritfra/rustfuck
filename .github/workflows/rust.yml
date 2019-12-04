@@ -1,4 +1,4 @@
-name: Rust
+name: Build release artifact
 
 on: [push]
 
