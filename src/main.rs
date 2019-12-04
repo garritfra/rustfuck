@@ -1,17 +1,21 @@
 mod instructions;
+mod interpreter;
 mod lexer;
 mod parser;
-use instructions::Instruction;
-use instructions::OpCode;
 
 fn main() {
-    let tokens: Vec<OpCode> = lexer::lex("+[-[.]-].");
-
-    let instructions: Vec<Instruction> = parser::parse(tokens);
-
-    for instruction in &instructions {
-        println!("{:?}", instruction);
+    let mut tape: Vec<u8> = vec![0; 1024];
+    for _i in 0..1024 {
+        tape.push(60);
     }
+    let mut ptr = 512;
+
+    interpreter::run(
+        &parser::parse(lexer::lex("++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.
+        ")),
+        &mut tape,
+        &mut ptr,
+    )
 }
 
 #[cfg(test)]
