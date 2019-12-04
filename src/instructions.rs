@@ -1,4 +1,4 @@
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum OpCode {
   Increment,
   Decrement,
@@ -10,7 +10,7 @@ pub enum OpCode {
   LoopEnd,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum Instruction {
   Increment,
   Decrement,
@@ -18,5 +18,5 @@ pub enum Instruction {
   MoveLeft,
   Print,
   Read,
-  Loop(Vec<OpCode>),
+  Loop(Vec<Instruction>),
 }
