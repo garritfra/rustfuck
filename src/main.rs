@@ -22,11 +22,11 @@ fn main() {
     file.read_to_string(&mut source)
         .expect("failed to read program file");
 
-    let mut tape: Vec<u8> = vec![0; 1024];
-    for _i in 0..1024 {
-        tape.push(60);
+    let mut tape: Vec<u8> = vec![0; 16384];
+    for _i in 0..16384 {
+        tape.push(0);
     }
-    let mut ptr = 512;
+    let mut ptr = 8192;
 
     interpreter::run(&parser::parse(lexer::lex(&source)), &mut tape, &mut ptr)
 }
