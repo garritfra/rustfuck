@@ -3,5 +3,5 @@ Brainfuck Interpreter written in Rust
 
 ### Usage
 ```
-rustfuck <file.bf>
+cargo run <file.bf>
 ```
